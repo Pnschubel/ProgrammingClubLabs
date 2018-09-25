@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=DNAGenerator()
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ DNAGenerator\r\n
+comment1.params=
+comment1.target=void\ getDNA()
+comment1.text=\r\n\ A\ method\ to\ create\ the\ new\ DNA\ sequence\r\n\ @post\ \ \ \ sequence\ will\ be\ string\ from\ 1000-2000\ base\ pairs\ of\ only\ A,\ G,\ T,\ C\r\n\ @param\ \ \ none\r\n\ @return\ \ none\r\n
+comment2.params=
+comment2.target=java.util.ArrayList\ breakDNA()
+comment2.text=\r\n\ A\ method\ to\ break\ up\ the\ DNA\ sequence\ into\ the\ pieces\ array\r\n\ \ \ \ \ \ Subsequently\ shuffles\ the\ array\ into\ chunks\ ~70\ long.\r\n\ \ \ \ \ \ Will\ be\ somewhere\ between\ 10\ and\ 25\ pieces\ overlap\ per\ side.\r\n\ @pre\ String[]\ pieces\ is\ empty\r\n\ @param\ none\r\n\ @return\ ArrayList<String>\ the\ pieces\ of\ the\ DNA\r\n
+comment3.params=falseSequence
+comment3.target=boolean\ isSequence(java.lang.String)
+comment3.text=\r\n\ Checks\ to\ see\ if\ the\ given\ nucleotide\ sequence\ is\ the\ same\ at\ the\ true\ sequence\r\n\ @param\ String\ a\ sequence\ of\ nucleotides\ to\ compare\ to\ the\ true\ sequence\r\n\ @return\ boolean\ whether\ or\ not\ the\ strings\ match\r\n
+comment4.params=
+comment4.target=int\ getThreshhold()
+comment4.text=\r\n\ Gives\ the\ size\ of\ the\ Threshhold\ of\ overlap\r\n\ @param\ none\r\n\ @return\ int\ the\ minimum\ amount\ of\ overlap\ of\ the\ sequence\r\n
+numComments=5
