@@ -6,33 +6,37 @@
  */
 public class DNASequencer
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
+    /** Each TreeSet holds all nucleotide pieces, one for front, one for back */
+    private Set<String> starts;
+    private Set<String> end;
+ 
+    /**ArrayList of all of the DNA to sequence**/
+    private ArrayList<String> pieces;
+    /**Final resequenced DNA**/
+    private String resequencedDNA;
+    
+    int CUTTOFF = 25; //The max amount of overlap we care about -- can alter if not enough
+    
     /**
-     * Default constructor for objects of class DNASequencer
+     * Initializes the DNASequencer()
+     * @param ArrayList<String> -- the array list of all of the elements to sequence
      */
-    public DNASequencer()
+    public DNASequencer(ArrayList<String> parts)
     {
-        // initialise instance variables
-        x = 0;
+        // initialise all of the Sets -- using treeSets for alphabet purposes
+        start = new TreeSet();
+        end = new TreeSet();     
+        //Gets the DNA pieces
+        pieces = parts;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
+     * Method to put all of the relevant part of the nucleotide sequences into start - end trees.
+     * @param none
+     * @return none
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
+    private void sortPieces(){
+        int index = 0; //The index of the part of
     }
 
 }
