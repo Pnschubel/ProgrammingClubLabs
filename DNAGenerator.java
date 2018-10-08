@@ -12,15 +12,21 @@ public class DNAGenerator
 {
     /**String[] NUCLEOTIDES - the possible nucleotides in DNA sequence
      * String sequence - the sequence of DNA nucleotides 
-     * int THRESHHOLD - the minimum size of a piece of overlap 
+     * int LOWERBOUND - the minimum size of a piece of overlap 
+     * int UPPERBOUND - the max size of a piece of overlap
      * int MINSIZE - the minimum size of the sequence
      * int MAXSIZE - the maximum size of the sequence
+     * int MINSEGSIZE - the miniumum size of a piece of DNA
+     * int MAXSEGSIZE - the maximum size of a piece of DNA
     */
     private String[] NUCLEOTIDES = {"A","T","C","G"};
     private String sequence;
-    int THRESHHOLD = 10;
-    int MINSIZE = 1500;
-    int MAXSIZE = 3000;
+    final int LOWERBOUND = 10;
+    final int UPPERBOUND = 25;
+    final int MINSIZE = 1500;
+    final int MAXSIZE = 3000;
+    final int MINSEGSIZE = 39;
+    final int MAXSEGSIZE = 90;
 
     /**
      * Default constructor for objects of class DNAGenerator
@@ -64,23 +70,25 @@ public class DNAGenerator
      * @return ArrayList<String> the pieces of the DNA
      */
     public ArrayList<String> breakDNA(){
-        int start = 0; //Location along the sequence where chunk starts.
-        int end = (int)(Math.random() * 51 + 39); // end location of chunk: gives it size from 51-90
+        //Location along the sequence where chunk starts.
+        int start = 0;
+        // end location of chunk: gives it size from MINSEGSIZE to MAXSEGSIZE
+        int end = (int)(Math.random() * (MAXSEGSIZE - MINSEGSIZE) + MINSEGSIZE); 
         ArrayList<String> pieces = new ArrayList(); // what we hold pieces of DNA in
         
         //Goes through sequence
         //Means that the end segment of DNA will have at least THRESHHOLD unique
         //nucleotides at its end.
-        while (end < sequence.length() - THRESHHOLD){
+        while (end < sequence.length() - LOWERBOUND){
             //Adds the new piece of DNA to the pieces.
             pieces.add(sequence.substring(start, end));
             
             //Updates the start and end coordinates
-            //The bit at the end guarentees at least THRESSHOLD bit overlap
-            start = end - (int)(Math.random() * 15 + THRESHHOLD);
+            //The bit at the end guarentees at least LOWERBOUND bit overlap
+            start = end - (int)(Math.random() * (UPPERBOUND - LOWERBOUND) + LOWERBOUND);
             //Little bit less variable than original end due to overlap
-            //So we made it a bit shorter.
-            end += (int)(Math.random() * 26 + 39);
+            //So we shorten it by UPPPERBOUND in comparison to original location
+            end += (int)(Math.random() * (MAXSEGSIZE-MINSEGSIZE-UPPERBOUND) + MINSEGSIZE);
         }
         //Gets the remaining nucleotides into the pieces array
         pieces.add(sequence.substring(start, sequence.length()));
@@ -111,7 +119,7 @@ public class DNAGenerator
      * @return int the minimum amount of overlap of the sequence
      */
     public int getThreshhold(){
-        return THRESHHOLD;
+        return LOWERBOUND;
     }
 }
 /*
