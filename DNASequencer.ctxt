@@ -1,8 +1,17 @@
 #BlueJ class context
-comment0.params=
-comment0.target=DNASequencer()
-comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ DNASequencer\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \ \ \ that\ describes\ the\ operation\ of\ the\ method\r\n\r\n\ @pre\ \ \ \ \ \ \ \ preconditions\ for\ the\ method\r\n\ \ \ \ \ \ \ \ \ \ \ \ (what\ the\ method\ assumes\ about\ the\ method's\ parameters\ and\ class's\ state)\r\n\ @post\ \ \ \ postconditions\ for\ the\ method\r\n\ \ \ \ \ \ \ \ \ \ \ \ (what\ the\ method\ guarantees\ upon\ completion)\r\n\ @param\ \ \ \ y\ \ \ \ description\ of\ parameter\ y\r\n\ @return\ \ \ \ description\ of\ the\ return\ value\r\n
-numComments=2
+comment0.params=parts
+comment0.target=DNASequencer(java.util.ArrayList)
+comment0.text=\r\n\ Initializes\ the\ DNASequencer()\r\n\ @param\ ArrayList<String>\ --\ the\ array\ list\ of\ all\ of\ the\ elements\ to\ sequence\r\n
+comment1.params=rightways
+comment1.target=java.lang.String\ reverse(java.lang.String)
+comment1.text=\r\n\ Method\ to\ reverse\ a\ string\r\n\ @param\ String\ the\ string\ you\ want\ to\ reverse\r\n\ @return\ String\ the\ reversed\ String\r\n
+comment2.params=
+comment2.target=void\ starts()
+comment2.text=\r\n\ Method\ to\ create\ set\ of\ the\ first\ part\ of\ the\ pieces\ as\ well\ as\ the\ index\r\n\ @param\ none\r\n\ @return\ none\r\n
+comment3.params=
+comment3.target=void\ ends()
+comment3.text=\r\n\ Method\ to\ create\ the\ set\ of\ the\ last\ part\ of\ the\ array\ in\ reverse\ order\ and\ index\r\n\ @param\ none\r\n\ @return\ none\r\n
+comment4.params=
+comment4.target=void\ sortPieces()
+comment4.text=\r\n\ Method\ to\ put\ all\ of\ the\ relevant\ part\ of\ the\ nucleotide\ sequences\ into\ start\ -\ end\ trees.\r\n\ @param\ none\r\n\ @return\ none\r\n
+numComments=5

@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.LinkedList;
+import java.util.ArrayList;
 /**
  * Will sequence an array list of nucleotides with overlapping ends.
  * 
@@ -10,7 +11,7 @@ import java.util.LinkedList;
 public class DNASequencer
 {
     /** Each TreeSet holds all nucleotide pieces, one for front, one for back */
-    private Set<String> starts;
+    private Set<String> start;
     private Set<String> end;
  
     /**ArrayList of all of the DNA to sequence**/
@@ -42,36 +43,30 @@ public class DNASequencer
     }
     
     /**
-     * Method to reverse a string
-     * @param String the string you want to reverse
-     * @return String the reversed String
-     */
-    private String reverse(String rightways){
-        String backwards = "";//String to put in backwards characters.
-    }
-    
-    /**
      * Method to create set of the first part of the pieces as well as the index
      * @param none
      * @return none
      */
     private void starts(){
         //i is the index of the piece in pieces
-        for (int i = 0; i < pieces.size; i++){
+        for (int i = 0; i < pieces.size(); i++){
             //Takes the first three nucleotides and the index, put them in the set.
-            start.add(pieces[i].substring(0,3) + " " + i);
+            start.add(pieces.get(i).substring(0,3) + " " + i);
         }
     }
     
     /**
      * Method to create the set of the last part of the array in reverse order and index
      * @param none
-     * @return none
+     * @return none THIS IS USELESS IT IS THE END OF THE STRING.
      */
     private void ends(){
+        int length; //length of the sequence
         //i is index of the piece in pieces
-        for (int i = 0; i < pieces.size; i++){
-            end.add(pieces[i].charAt(
+        for (int i = 0; i < pieces.size(); i++){
+            length = pieces.get(i).length();
+            //Takes the last three nucleotides and the index, put in set.
+            end.add(pieces.get(i).substring(length-3, length) + " " + i);
         }
     }
 
@@ -81,7 +76,12 @@ public class DNASequencer
      * @return none
      */
     private void sortPieces(){
-        int index = 0; //The index of the part of
+        this.starts();
+        this.ends();
+    }
+    
+    private String resequence(){
+        //Since alphabetized, we're gonna have all the lower alphabet starts and ends
     }
 
 }
