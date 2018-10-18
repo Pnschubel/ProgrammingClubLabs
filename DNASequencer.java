@@ -12,7 +12,7 @@ public class DNASequencer
 {
     /** Each TreeSet holds all nucleotide pieces, one for front, one for back */
     private Set<String> start;
-    private Set<String> end;
+    private ArrayList<String> end; //This is an array list because I want to affect the order
  
     /**ArrayList of all of the DNA to sequence**/
     private ArrayList<String> pieces;
@@ -21,6 +21,9 @@ public class DNASequencer
     
     /**A place to keep all the indexes of the pieces to be added in order**/
     private LinkedList indexes;
+    
+    /**The Max amount of overlap we care about (in this case, I'm going to say 50, but that's large)*/
+    private int CUTOFF = 50;
     
     
     /**
@@ -31,7 +34,7 @@ public class DNASequencer
     {
         // initialise all of the Sets -- using treeSets for alphabet purposes
         start = new TreeSet();
-        end = new TreeSet();     
+        end = new ArrayList();     
         //Gets the DNA pieces
         pieces = parts;
         
@@ -51,7 +54,7 @@ public class DNASequencer
         //i is the index of the piece in pieces
         for (int i = 0; i < pieces.size(); i++){
             //Takes the first three nucleotides and the index, put them in the set.
-            start.add(pieces.get(i).substring(0,3) + " " + i);
+            start.add(pieces.get(i).substring(0,CUTOFF) + " " + i);
         }
     }
     
@@ -66,7 +69,7 @@ public class DNASequencer
         for (int i = 0; i < pieces.size(); i++){
             length = pieces.get(i).length();
             //Takes the last three nucleotides and the index, put in set.
-            end.add(pieces.get(i).substring(length-3, length) + " " + i);
+            end.add(pieces.get(i).substring(length-CUTOFF, length) + " " + i);
         }
     }
 
@@ -80,8 +83,31 @@ public class DNASequencer
         this.ends();
     }
     
+    /**Method to resequence all of the DNA nucleotides
+       @param none
+       @return String the resequenced DNA*/
+    
     private String resequence(){
-        //Since alphabetized, we're gonna have all the lower alphabet starts and ends
+        String part; //A piece of overlap used to narrow down possibilites
+        ArrayList<Integer> possibilities = new ArrayList(); //An array list of possibilty's integers
+        this.sortPieces();
+        
+        for (String element : start){
+            //Narrows down the possibilities by only focusing on a minor piece of overlap
+            part = element.substring(0,5);
+            
+            //Goes through the entirety of the ends (I couldn't figure out better way)
+            //Looks for the part of overlap
+            for (int i  = 0; i < end.size(); i++){
+                if (end.get(i).contains(part)){
+                    //If does contain segment, adds the index of the string to possibilities
+                    possibilities.add((int)end.get(i).charAt(end.get(i).length()));
+                }
+            }
+            
+        }
+        
+        return "";
     }
 
 }
