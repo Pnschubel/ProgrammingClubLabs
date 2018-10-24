@@ -12,7 +12,7 @@ public class DNASequencer
 {
     /** Each TreeSet holds all nucleotide pieces, one for front, one for back */
     private Set<String> start;
-    private ArrayList<String> end; //This is an array list because I want to affect the order
+    private ArrayList<String> end;
  
     /**ArrayList of all of the DNA to sequence**/
     private ArrayList<String> pieces;
@@ -83,14 +83,48 @@ public class DNASequencer
         this.ends();
     }
     
+    /**
+     * Method to get all of the possibilities for the nucleotide sequence overlap given the part
+     * and the nucleotide segment
+     * @param Sting part -- the part of overlap we're looking for
+     * @param String nucleotide -- the end nucleotide segment
+     * @return String the possible string of overlap (will return "" if no overlap)
+     */
+    private String getPossibility(String overlap, String bases){
+        //Integer of where we are in the bases
+        int position = bases.length()-5;
+        //the overlap should be five characters long, these are the five
+        //Note: This includes the space and index at the end of the string. By design.
+        String temp = bases.substring(position, bases.length());
+        //The place to hold the possibility
+        String possiblity = bases.substring(position, bases.length());
+        
+        //Gets the entire possiblity by working from the end of the string up.
+        while (!temp.equals(overlap) && position > 0){
+            //Adds the next character onto possiblities
+            position -= 1;
+            possiblity = bases.charAt(position) + possiblity;
+            
+            //Adds the next character to temp and removes the last character
+            temp = bases.charAt(position) + temp.substring(0, temp.length() - 1);
+        }
+        
+        //Makes sure there actually was the intended overlap. Else, no possibility
+        if (!temp.equals(overlap)){
+            possibility = "";
+        }
+        return possibility;
+    }
+    
     /**Method to resequence all of the DNA nucleotides
        @param none
        @return String the resequenced DNA*/
     
     private String resequence(){
         String part; //A piece of overlap used to narrow down possibilites
-        ArrayList<Integer> possibilities = new ArrayList(); //An array list of possibilty's integers
+        ArrayList<String> possibilities = new ArrayList();
         this.sortPieces();
+        String temp; //A string to hold possibilities before adding them to arrayList
         
         for (String element : start){
             //Narrows down the possibilities by only focusing on a minor piece of overlap
@@ -100,10 +134,16 @@ public class DNASequencer
             //Looks for the part of overlap
             for (int i  = 0; i < end.size(); i++){
                 if (end.get(i).contains(part)){
-                    //If does contain segment, adds the index of the string to possibilities
-                    possibilities.add((int)end.get(i).charAt(end.get(i).length()));
+                    //Also adds the segments that could be the overlap to an array NOTE: There
+                    //are some strings that might contain the part more than once, so there might
+                    //be multiple possibilities from the same nucleotide. THIS CODE DOESN'T
+                    //ACCOUNT FOR THAT AS OF THIS MOMENT.
+                    temp = this.getPossibility(part, end.get(i));
                 }
             }
+            
+            //DO LATER: Finds the match. Since we now have entire piece of overlap, just
+            //looking for the match. BE AWARE OF THE INDEX AT THE END OF THE POSSIBILITY.
             
         }
         
